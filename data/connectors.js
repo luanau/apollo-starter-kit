@@ -1,39 +1,61 @@
 import Sequelize from 'sequelize';
 import casual from 'casual';
 import _ from 'lodash';
-require("sequelize-msnodesqlv8");
+
+// require("msnodesqlv8");
+// require("sequelize-msnodesqlv8");
 
 //Working for sqlite
-const db = new Sequelize('blog', null, null, {
-  dialect: 'sqlite',
-  storage: './blog.sqlite',
-});
-
-
-// let db = new Sequelize({
-//   dialect: 'mssql',
-//   dialectModulePath: 'sequelize-msnodesqlv8',
-//   dialectOptions: {
-//     driver: 'SQL Server Native Client 11.0',
-//     instanceName: 'DESKTOP-53LH7NO',
-//     trustedConnection: true
-//   },
-//   //host: 'localhost',
-//   database: 'graphqlData'
+// const db = new Sequelize('blog', null, null, {
+//   dialect: 'sqlite',
+//   storage: './blog.sqlite',
 // });
 
-// let db = new Sequelize({
-//   dialect: 'mssql',
-//   dialectModulePath: 'sequelize-msnodesqlv8',
-//   dialectOptions: {
-//     driver: 'ODBC Driver 11 for SQL Server',
-//     instanceName: 'DESKTOP-53LH7NO'
-//   },
-//   host: 'localhost',
-//   username: 'sa',
-//   password: 'ffgdfgdfg',
-//   database: 'graphqlData'
-// });
+var database="graphqlData",
+  userName = "user",
+  password = "password",
+  host = "DESKTOP-53LH7NO",
+  instance = "MSSQLSERVER";
+
+//This one works for local SQL Server (tedious driver)
+// let db = new Sequelize(database, userName, password, {
+// 			dialect: 'mssql',
+// 			host: host,
+//       pool: {
+//         max: 5,
+//         min: 0,
+//         idle: 10000
+//       }
+// 		});
+
+// //This one works for local SQL Server (tedious driver)
+// let db = new Sequelize(database, userName, password, {
+// 			dialect: 'mssql',
+// 			host: host,
+// 			//port: 1433, // Default port
+// 			options: {
+//         // driver: 'tedious',
+// 				instanceName: instance,
+//         // encrypt: true,
+// 			},
+//       pool: {
+//           max: 5,
+//           min: 0,
+//           idle: 10000
+//       }
+// 		});
+
+//This one works for local SQL Server (tedious driver)
+var db = new Sequelize('mssql://'+userName+':'+password+'@'+host+'/'+database);
+
+// db
+//   .authenticate()
+//   .then(function(err) {
+//     console.log('Connection has been established successfully.');
+//   })
+//   .catch(function (err) {
+//     console.log('Unable to connect to the database:', err);
+//   });
 
 const AuthorModel = db.define('author', {
   firstName: { type: Sequelize.STRING },

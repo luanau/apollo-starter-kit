@@ -4,7 +4,7 @@ import Schema from './data/schema';
 import Mocks from './data/mocks';
 import Resolvers from './data/resolvers';
 
-const GRAPHQL_PORT = 8080;
+const GRAPHQL_PORT = 9090;
 
 const graphQLServer = express();
 graphQLServer.use('/graphql', apolloServer({
