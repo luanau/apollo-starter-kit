@@ -1,11 +1,39 @@
 import Sequelize from 'sequelize';
 import casual from 'casual';
 import _ from 'lodash';
+require("sequelize-msnodesqlv8");
 
+//Working for sqlite
 const db = new Sequelize('blog', null, null, {
   dialect: 'sqlite',
   storage: './blog.sqlite',
 });
+
+
+// let db = new Sequelize({
+//   dialect: 'mssql',
+//   dialectModulePath: 'sequelize-msnodesqlv8',
+//   dialectOptions: {
+//     driver: 'SQL Server Native Client 11.0',
+//     instanceName: 'DESKTOP-53LH7NO',
+//     trustedConnection: true
+//   },
+//   //host: 'localhost',
+//   database: 'graphqlData'
+// });
+
+// let db = new Sequelize({
+//   dialect: 'mssql',
+//   dialectModulePath: 'sequelize-msnodesqlv8',
+//   dialectOptions: {
+//     driver: 'ODBC Driver 11 for SQL Server',
+//     instanceName: 'DESKTOP-53LH7NO'
+//   },
+//   host: 'localhost',
+//   username: 'sa',
+//   password: 'ffgdfgdfg',
+//   database: 'graphqlData'
+// });
 
 const AuthorModel = db.define('author', {
   firstName: { type: Sequelize.STRING },
