@@ -27,7 +27,11 @@
   "homepage": "https://github.com/apollostack/apollo-starter-kit#readme",
   "dependencies": {
     "express": "4.13.4",
-    "graphql-tools": "^0.4.2"
+    "graphql-tools": "^0.4.2",
+    "sequelize": ">=3.27.0",
+    "lodash": ">=4.17.2",
+    "msnodesqlv8": ">=0.2.11",
+    "sequelize-msnodesqlv8": ">=0.2.3" 
   },
   "devDependencies": {
     "babel-cli": "6.5.1",
@@ -42,7 +46,8 @@
     "eslint-plugin-import": "^1.1.0",
     "eslint-plugin-react": "^4.2.3",
     "graphql": "^0.5.0",
-    "nodemon": "^1.9.1"
+    "nodemon": "^1.9.1",
+    "casual": ">=1.5.8" 
   },
   "eslintConfig": {
     "parser": "babel-eslint",
