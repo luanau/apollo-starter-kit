@@ -2,9 +2,6 @@ import Sequelize from 'sequelize';
 import casual from 'casual';
 import _ from 'lodash';
 
-// require("msnodesqlv8");
-// require("sequelize-msnodesqlv8");
-
 //Working for sqlite
 // const db = new Sequelize('blog', null, null, {
 //   dialect: 'sqlite',
@@ -46,7 +43,27 @@ var database="graphqlData",
 // 		});
 
 //This one works for local SQL Server (tedious driver)
-var db = new Sequelize('mssql://'+userName+':'+password+'@'+host+'/'+database);
+//var db = new Sequelize('mssql://'+userName+':'+password+'@'+host+'/'+database);
+
+//This one works for local SQL Server using trusted connection (msnodesqlv8 driver)
+var conStr = 'Driver={SQL Server Native Client 11.0};Server='+host+';Database='+database+';Trusted_Connection=yes;';
+//var conStr = 'Driver={SQL Server Native Client 11.0};Server='+host+'\\\\'+instance+';Database='+database+';Trusted_Connection=yes;';
+
+console.log(conStr);
+
+let db = new Sequelize({
+  dialect: 'mssql',
+  dialectModulePath: 'sequelize-msnodesqlv8',
+  dialectOptions: {
+    connectionString: conStr
+  },
+  pool: {
+    min: 0,
+    max: 5,
+    idle: 10000
+  }
+});
+
 
 // db
 //   .authenticate()
